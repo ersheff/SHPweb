@@ -18,7 +18,7 @@ let volume = new Tone.Volume( { volume: -24 } ).toDestination();
 let osc1 = new Tone.Oscillator( { frequency: freq2 } ).connect(volume).start();
 let osc2 = new Tone.Oscillator( { frequency: freq3 } ).connect(volume).start();
 let osc3 = new Tone.Oscillator( { frequency: freq4 } ).connect(volume).start();
-let osc4 = new Tone.Oscillator().connect(volume).start();
+let osc4 = new Tone.Oscillator().connect(volume);
 
 let bwow1 = new Tone.FeedbackDelay( { delayTime: dt1, feedback: 0.99 } );
 let bwow2 = new Tone.FeedbackDelay( { feedback: 0.99 } );
@@ -37,3 +37,8 @@ bwow1.connect(volume);
 bwow2.connect(volume);
 
 let pnoise = new Tone.Noise( { type: 'white' } ).connect(lowpass).start(); // create and start pink noise generator
+
+document.querySelector('body')?.addEventListener('click', async () => {
+    await Tone.start()
+    console.log('audio is ready')
+});
