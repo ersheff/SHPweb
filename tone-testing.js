@@ -5,15 +5,13 @@ let freq3 = 146.84;
 let freq4 = 293.68;
 let dt1 = .0109;
 
+let volSetting = -24;
+
 let lfo1 = new Tone.LFO( {min: dt1*.95, max: dt1*1.05, frequency: .01 } ).start();
-
 let lfo2 = new Tone.LFO( {min: freq3*0.99, max: freq3*1.01, frequency: .011 } ).start();
-
 let lfo3 = new Tone.LFO( {min: cutoff*0.3, max: cutoff*2.0 } ).start();
-
 let lfo4 = new Tone.LFO( {min: 0.01, max: 0.05, frequency: 0.01 } ).start();
-
-let volume = new Tone.Volume( { volume: -24 } ).toDestination();
+let volume = new Tone.Volume( { volume: volSetting } ).toDestination();
 
 let osc1 = new Tone.Oscillator( { frequency: freq2 } ).connect(volume).start();
 let osc2 = new Tone.Oscillator( { frequency: freq3 } ).connect(volume).start();
@@ -40,5 +38,4 @@ let pnoise = new Tone.Noise( { type: 'white' } ).connect(lowpass).start(); // cr
 
 document.querySelector('body')?.addEventListener('click', async () => {
     await Tone.start()
-    console.log('audio is ready')
 });
