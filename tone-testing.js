@@ -6,6 +6,7 @@ let freq4 = 293.68;
 let dt1 = .0109;
 
 let volSetting = -24;
+let slider = document.getElementById('volSlider');
 
 let lfo1 = new Tone.LFO( {min: dt1*.95, max: dt1*1.05, frequency: .01 } ).start();
 let lfo2 = new Tone.LFO( {min: freq3*0.99, max: freq3*1.01, frequency: .011 } ).start();
@@ -38,4 +39,12 @@ let pnoise = new Tone.Noise( { type: 'white' } ).connect(lowpass).start(); // cr
 
 document.querySelector('body')?.addEventListener('click', async () => {
     await Tone.start()
+});
+
+$(function () {
+    $('#volSlider').on('input', function() {
+        volSetting = $('#volSlider').val();
+        volume.volume.value = volSetting;
+        return false;
+    });
 });
