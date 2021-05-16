@@ -2,20 +2,42 @@
 <html>
 
 <head>
-    <title>BWOW</title>
+    <title>SHPofTHSEUS web</title>
     <script src='./node_modules/tone/build/Tone.js'></script>
-    <script src='https://code.jquery.com/jquery-3.4.1.min.js'></script>
 </head>
 
-<div class='slidecontainer'>
-    Volume:
-    <input type='range' min='-80' max='-10' value='-24' class='slider' id='volSlider' >
-</div>
-
-<p>Click to play</p>
 
 <body>
-    <script src='./tone-testing.js'></script>
+
+	<button onclick='refresh()'>Start</button>
+	<p>
+	<input type='range' min='0' max='100' oninput='updateSliderX(this.value);'>
+	<input type='range' min='0' max='100' oninput='updateSliderY(this.value);'>
+
+	<p id='valuesX'></p>
+	<p id='valuesY'></p>
+	<p id='picId'></p>
+
+	<img id='scorePic' src='img/SHP1.png' width='500' height='375'></img>
+
+	<script>
+		function refresh() {
+			let picId = Math.floor(Math.random() * 10) + 1; // returns # from 1-10
+			let pic = 'img/SHP'+picId+'.png';
+  			document.getElementById('picId').innerHTML = pic;
+    		document.getElementById('scorePic').src = pic;
+			//await Tone.start()
+		};
+
+		function updateSliderX(val) {
+          document.getElementById('valuesX').innerHTML=val; 
+        };
+        function updateSliderY(val) {
+          document.getElementById('valuesY').innerHTML=val; 
+        };
+
+	</script>
+
 </body>
 
 </html>
