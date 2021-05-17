@@ -4,37 +4,42 @@
 <head>
     <title>SHPofTHSEUS web</title>
     <script src='./node_modules/tone/build/Tone.js'></script>
+    <script src="./node_modules/socket.io/client-dist/socket.io.js"></script>
 </head>
 
 
 <body>
 
+	<button onclick='connect()'>Connect</button>
 	<button onclick='refresh()'>Start</button>
 	<p>
-	<input type='range' min='0' max='100' oninput='updateSliderX(this.value);'>
-	<input type='range' min='0' max='100' oninput='updateSliderY(this.value);'>
-
-	<p id='valuesX'></p>
-	<p id='valuesY'></p>
+	<input type='range' min='0' max='100' onchange='updateSlider(this.value);'>
+	
+	<p id='connectionStatus'></p>
+	<p id='value'></p>
 	<p id='picId'></p>
 
-	<img id='scorePic' src='img/SHP1.png' width='500' height='375'></img>
+	<img id='scorePic' src='' width='500' height='375'></img>
 
 	<script>
+		let socket = io.connect('https://ch-server.herokuapp.com/hub');
+
 		function refresh() {
 			let picId = Math.floor(Math.random() * 10) + 1; // returns # from 1-10
 			let pic = 'img/SHP'+picId+'.png';
   			document.getElementById('picId').innerHTML = pic;
     		document.getElementById('scorePic').src = pic;
 			//await Tone.start()
+
 		};
 
-		function updateSliderX(val) {
-          document.getElementById('valuesX').innerHTML=val; 
+		function updateSlider(val) {
+          document.getElementById('value').innerHTML = val; 
         };
-        function updateSliderY(val) {
-          document.getElementById('valuesY').innerHTML=val; 
-        };
+
+	   	socket.on("serverMessage", (data) => {
+	    	console.log("--------- received serverMessage: " + data.message);
+	    });
 
 	</script>
 
