@@ -1,0 +1,102 @@
+<!-- https://stackoverflow.com/questions/48248832/stylesheet-not-loaded-because-of-mime-type -->
+
+<!doctype html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<head>
+  <title>TEST Remote Collab Web Interface</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="/style.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="/client-browser-controller.js"></script>
+</head>
+
+
+<div class="greater-container">
+  <div class="page-header">
+    <p class="title">TEST Remote Collab Web Interface</p>
+    <img src="images/Collab-Hub.png" class="logo">
+  </div>
+  <div class="rounded">
+    <div class="buttons tray">
+      Trigger an 'event'
+    </div>
+    <div class="buttons tray">
+      <div> <button id="event-button1" onclick="return false" value="webEvent1">event webEvent1</button><br />
+        <input id='event-button1-text' onclick="return false" type="text" placeholder="change header" size="14"></input>
+      </div>
+
+      <div> <button id="event-button2" onclick="return false" value="webEvent2">event webEvent2</button><br />
+        <input id='event-button2-text' onclick="return false" type="text" placeholder="change header" size="14"></input></div>
+
+      <div> <button id="event-button3" onclick="return false" value="webEvent3">event webEvent3</button><br />
+        <input id='event-button3-text' onclick="return false" type="text" placeholder="change header" size="14"></input></div>
+
+      <div> <button id="event-button4" onclick="return false" value="webEvent4">event webEvent4</button><br />
+        <input id='event-button4-text' onclick="return false" type="text" placeholder="change header" size="14"></input></div>
+    </div>
+  </div>
+
+  <div class="rounded">
+    <div class="sliders tray">
+      Send slider control values
+    </div>
+    <div class="sliders tray">
+      <div>
+        <label for="slider1" id="slider1-label">control webSlider1 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider1" id="control-webSlider1">
+      </div>
+      <div>
+        <label for="slider2" id="slider2-label">control webSlider2 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider2" id="control-webSlider2">
+      </div>
+      <div>
+        <label for="slider3" id="slider3-label">control webSlider3 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider3" id="control-webSlider3">
+      </div>
+      <div>
+        <label for="slider4" id="slider4-label">control webSlider4 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider4" id="control-webSlider4">
+      </div>
+    </div>
+  </div>
+
+  <div class="rounded">
+    <div class="chatcontainer tray">
+      <div class="users">
+        Users
+      </div>
+      <div class="messageHeader tray">
+        Messages
+      </div>
+      <div class="sendMessageHeader tray">
+        Send a message
+      </div>
+      <div class="changeUsernameHeader tray">
+        Current Username/ID:
+
+      </div>
+      <div class="changeUsername">
+        <p id="webUsername"></p>
+        <input id='username-text' onclick="return false" type="text" placeholder="Change Username" size="14"></input>
+      </div>
+      <div class="sendMessageForm tray">
+        <form action="">
+          <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+      </div>
+      <div class="user tray">
+        <ul id="usersList"></ul>
+        <!-- //https://www.w3schools.com/jsref/met_node_appendchild.asp -->
+      </div>
+      <div class="chat tray">
+        <ul id="messages"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</html>

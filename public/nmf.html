@@ -1,0 +1,149 @@
+<!-- https://stackoverflow.com/questions/48248832/stylesheet-not-loaded-because-of-mime-type -->
+
+<!doctype html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+<head>
+  <title>SHP of THSEUS - Audience Interface</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="stylesheet" href="/NMFstyle.css" />
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <!-- <script src="jquery-1.11.1.js"></script> -->
+  <script src="/nmf-controller.js"></script>
+</head>
+
+
+<div class="greater-container">
+  <div class="page-header">
+    <a href="http://collab-hub.io"><img src="images/Collab-Hub.png" class="logo"></a>
+    <p class="title">SHP of THSEUS - Audience Interface</p>
+
+  </div>
+  <div class="rounded">
+    <div class="description tray">
+      Clicking a button temporarily heightens/increases/intensifies that musical component -- the effect is cumulative.<br />
+    </div>
+    <div class="buttons tray">
+      <div> <button id="event-button1" onclick="return false" value="graininess">Graininess</button><br />
+        <div id="indicator1">
+          <h3>Pressed</h3>
+        </div>
+        <!-- <input id='event-button1-text' onclick="return false" type="text" placeholder="change header" size="14"></input> -->
+      </div>
+
+      <div> <button id="event-button2" onclick="return false" value="brightness">Brightness</button><br />
+        <!-- <input id='event-button2-text' onclick="return false" type="text" placeholder="change header" size="14"></input> -->
+      </div>
+
+      <div> <button id="event-button3" onclick="return false" value="resonance">Resonance</button><br />
+        <!-- <input id='event-button3-text' onclick="return false" type="text" placeholder="change header" size="14"></input> -->
+      </div>
+
+      <div> <button id="event-button4" onclick="return false" value="feedback">Feedback</button><br />
+        <!-- <input id='event-button4-text' onclick="return false" type="text" placeholder="change header" size="14"></input> -->
+      </div>
+    </div>
+    <div class="description2 tray">
+      <p>Please join us after the performance for a question-and-answer session.</p></a>
+    </div>
+  </div>
+
+  <!-- <div class="rounded">
+    <div class="sliders tray">
+      Send slider control values
+    </div>
+    <div class="sliders tray">
+      <div>
+        <label for="slider1" id="slider1-label">control webSlider1 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider1" id="control-webSlider1">
+      </div>
+      <div>
+        <label for="slider2" id="slider2-label">control webSlider2 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider2" id="control-webSlider2">
+      </div>
+      <div>
+        <label for="slider3" id="slider3-label">control webSlider3 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider3" id="control-webSlider3">
+      </div>
+      <div>
+        <label for="slider4" id="slider4-label">control webSlider4 50</label><br />
+        <input type="range" min="0" max="100" value="50" name="slider4" id="control-webSlider4">
+      </div>
+    </div>
+  </div> -->
+
+  <div class="rounded">
+    <div class="chatcontainer tray">
+      <div class="pieceDescriptionTitle tray">
+        <b>Description</b>
+      </div>
+      <div class="pieceDescription tray">
+        <p>
+          SHP of THSEUS is a musical work for remote performers where the musical parameters are continuously changing, controlled by other performers and audience members. Based on Mythology and the thought experiment of identity, the shape of the
+          work is predetermined but as it progresses, almost all sonic, visual, and control data is replaced multiple times over. A transformational performance overall, the visual and aural progressional will be interactive with the audience.
+          <br /><br />
+          A. Each performer has their own digital instrument with some musical process parameters controlled by a different performer. <br />
+          B. Throughout the work, each performer will be given different graphical score elements which have a prompt to interpret that graphical score through their own sonic/visual instigation or by manipulating other performers musical process.
+          <br />
+          C. The audience interface controls the musical parameters of the accompanying drone. <br />
+          D. All control data for collaborative musical instrument parameters and graphical score sequencing is handled through <a href="http://collab-hub.io" target="_blank">Collab-Hub</a>.
+        </p>
+      </div>
+      <div class="membersTitle tray">
+        <p><b>RE/SHFT/ER:</b><br />
+      </div>
+      <div class="members1 tray">
+        Nick Hwang: <a href="http://nickhwang.com" target="_blank">nickhwang.com</a><br />
+        Eric Sheffield: <a href="http://ericsheffield.net" target="_blank">ericsheffield.net</a><br />
+        Tony Marasco: <a href="http://www.atmarasco.com" target="_blank">www.atmarasco.com</a>
+      </div>
+      <div class="members2 tray">
+        Jeff Herriott: <a href="http://jeffherriott.com/" target="_blank">jeffherriott.com</a><br />
+        Anna Weisling: <a href="http://aweisling.com" target="_blank">aweisling.com</a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <div class="rounded">
+    <div class="chatcontainer tray">
+      <div class="users tray">
+        Users
+      </div>
+      <div class="messageHeader tray">
+        Messages
+      </div>
+      <div class="sendMessageHeader tray">
+        Send a message
+      </div>
+      <div class="changeUsernameHeader tray">
+        Current Username/ID:
+      </div>
+      <div class="changeUsername">
+        <p id="webUsername"></p>
+        <input id='username-text' onclick="return false" type="text" placeholder="Change Username" size="14"></input>
+      </div>
+      <div class="sendMessageForm tray">
+        <form action="">
+          <input id="m" autocomplete="off" /><button>Send</button>
+        </form>
+      </div>
+      <div class="user tray">
+        <ul id="usersList"></ul>
+        <!-- //https://www.w3schools.com/jsref/met_node_appendchild.asp -->
+      </div>
+      <div class="chat tray">
+        <ul id="messages"></ul>
+      </div>
+    </div>
+  </div>
+
+
+
+</div>
+
+
+</html>

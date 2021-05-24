@@ -1,10 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 
+
+
 <head>
     <title>SHPofTHSEUS web</title>
     <script src='./node_modules/tone/build/Tone.js'></script>
-    <script src="./node_modules/socket.io/client-dist/socket.io.js"></script>
+    <script src='./node_modules/socket.io-client/dist/socket.io.js'></script>
 </head>
 
 
@@ -22,7 +24,16 @@
 	<img id='scorePic' src='' width='500' height='375'></img>
 
 	<script>
-		let socket = io.connect('https://ch-server.herokuapp.com/hub');
+		
+		const socket = io.connect('https://ch-server.herokuapp.com/hub');
+
+	   	socket.on('serverMessage', (data) => {
+	    	console.log("--------- received serverMessage: " + data.message);
+	    });
+
+		function connect() {
+			console.log('yeah!');
+		};
 
 		function refresh() {
 			let picId = Math.floor(Math.random() * 10) + 1; // returns # from 1-10
@@ -37,9 +48,6 @@
           document.getElementById('value').innerHTML = val; 
         };
 
-	   	socket.on("serverMessage", (data) => {
-	    	console.log("--------- received serverMessage: " + data.message);
-	    });
 
 	</script>
 
