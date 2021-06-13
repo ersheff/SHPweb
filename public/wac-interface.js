@@ -3,16 +3,14 @@ let socket;
 document.addEventListener('DOMContentLoaded', (event) => {
   
   console.log("Ready!");
-
   socket = io("/hub");
   
   socket.on("serverMessage", (incoming) => {
     console.log(incoming.message);
   });
-
   socket.on("control", (incoming) => {
     let val = incoming.values[0];
-    document.getElementById("fromMax1").value = val;
+    document.getElementById("fromMax").value = val;
     loopSpeed(val);
   });
 
@@ -20,16 +18,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 function toMax(data) {
-
   let outgoing = {
     header: "fromWeb",
     values: data,
     mode: "push",
     target: "all"
   };
-
   socket.emit("control", outgoing);
-
 }
 
 
