@@ -33,7 +33,7 @@ function testFunction() {
 
 function changeScore() {
   let picNum =  Math.floor(Math.random() * 10) + 1;
-  document.getElementById("score").src = "img/SHP" + picNum + ".png";
+  document.getElementById("score").src = "SHPscore/SHP" + picNum + ".png";
 }
 
 /*
