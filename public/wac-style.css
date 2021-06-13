@@ -1,26 +1,20 @@
 h1 {
     color: #99CC99;
-    text-align: center;
     font-family: sans-serif;
 }
 
 img {
-    display: block;
-    max-width: 90%;
-    height: auto;
-    border: 10px solid #333333;
-    margin-left: auto;
-    margin-right: auto;
+
 }
 
 body {
-    background-color: #666766;
+    background-color: #000000;
     font-family: sans-serif;
     color: #99CC99;
 }
 
 .slider {
-    width: 100%;
+    width: 25%;
 }
 
 .button {

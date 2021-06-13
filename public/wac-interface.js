@@ -6,35 +6,32 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
   socket = io("/hub");
   
-  socket.on("serverMessage", (data) => {
-    console.log(data.message);
+  socket.on("serverMessage", (incoming) => {
+    console.log(incoming.message);
+  });
+
+  socket.on("control", (incoming) => {
+    let val = incoming.values[0];
+    document.getElementById("fromMax1").value = val;
+    loopSpeed(val);
   });
 
 });
 
 
-function testFunction() {
-  console.log("Test");
+function toMax(data) {
 
-  let sliderVal = document.getElementById("mainSlider").value; 
-
-  let audienceObject = {
-    header: "audienceSlider",
-    values: sliderVal,
+  let outgoing = {
+    header: "fromWeb",
+    values: data,
     mode: "push",
     target: "all"
   };
 
-  socket.emit("control", audienceObject);
-
-  console.log(audienceObject);
+  socket.emit("control", outgoing);
 
 }
 
-function changeScore() {
-  let picNum =  Math.floor(Math.random() * 10) + 1;
-  document.getElementById("score").src = "SHPscore/SHP" + picNum + ".png";
-}
 
 /*
 

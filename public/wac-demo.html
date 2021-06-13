@@ -11,35 +11,49 @@
 	<script src="wac-interface.js"></script>
 	<script src="wac-sound.js"></script>
 
-	<title>SHP of THSEUS</title>
+	<title>WAC Demo</title>
 </head>
 
 <body>
 	<div>
-		<h1>SHP of THSEUS</h1>
+		<h1>WAC Demo</h1>
 	</div>
 
+	<div>Control to Max user</div>
+
 	<div>
-		<input type="range" class="slider" id="mainSlider" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value; testFunction(); changeFreq(this.value);">
-		<output>50</output>
+		<input type="range" class="slider" id="toMax" value="0" min="0" max="127" oninput="toMax(this.value);">
 	</div>
 	
 	<br>
 
+	<div>Vibes loop volume</div>
+
 	<div>
-    	<button type="button" class="button" id="startButton" onclick="changeScore();">Click</button>
+		<input type="range" class="slider" id="fromMax1" value="0" min="0" max="127" oninput="loopVol(this.value);">
 	</div>
 
 	<br>
+	
+	<div>Vibes loop speed (also receives from Max user)</div>
 
 	<div>
-    	<img id="score" src="" />
+		<input type="range" class="slider" id="fromMax2" value="0" min="0" max="127" oninput="loopSpeed(this.value);">
 	</div>
+
+	<br>
+	<!-- <div>
+    	<button type="button" class="button" id="startButton" onclick="changeScore();">Click</button>
+	</div> -->
+
+	<br>
+
+	<img src="images/Collab-Hub.png">
 
 	<script type="text/javascript">
 		document.querySelector("button")?.addEventListener("click", async () => {
     	await Tone.start();
-    	console.log("context started");
+    	console.log("Cntext started");
 		});
 	</script>
 
