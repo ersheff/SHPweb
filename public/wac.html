@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+    
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="Tone.js"></script>
+	<script src="wac-interface.js"></script>
+	<script src="wac-sound.js"></script>
+
+	<title>SHP of THSEUS</title>
+</head>
+
+<body>
+	<div>
+		<h1>SHP of THSEUS</h1>
+	</div>
+
+	<div>
+		<input type="range" class="slider" id="mainSlider" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value; testFunction(); changeFreq(this.value);">
+		<output>50</output>
+	</div>
+	
+	<br>
+
+	<div>
+    	<button type="button" class="button" id="startButton" onclick="changeScore();">Click</button>
+	</div>
+
+	<br>
+
+	<div>
+    	<img id="score" src="" />
+	</div>
+
+	<script type="text/javascript">
+		document.querySelector("button")?.addEventListener("click", async () => {
+    	await Tone.start();
+    	console.log("context started");
+		});
+	</script>
+
+</body>
+
+</html>

@@ -48,5 +48,13 @@ function startServer() {
     }
     // important! must listen from `server`, not `app`, otherwise socket.io won't function correctly
     httpServer.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}.`));
+    // will send one message per second to all its clients
+    // const secondsSinceServerStarted = 0;
+    // setInterval(() => {
+    //   // console.log('starting interval transmissions');
+    //   // secondsSinceServerStarted++;
+    //   // io.emit("seconds", secondsSinceServerStarted);
+    //   io.emit('ping');
+    // }, 1000);
 }
 startServer();
