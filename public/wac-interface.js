@@ -21,15 +21,26 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 });
 
-function toServer() {
-  let value =   document.getElementById("mainSlider").value;
+setInterval(sliderToServer, 200);
+
+function sliderToServer() {
+  let value = document.getElementById("mainSlider").value;
   let outgoing = {
-    header: "fromWeb",
+    header: "sliderFromWeb",
     values: value,
     mode: "push",
     target: "all"
   };
   socket.emit("control", outgoing);
+}
+
+function bangToServer() {
+  let outgoing = {
+    header: "bangFromWeb",
+    mode: "push",
+    target: "all"
+  };
+  socket.emit("event", outgoing);
 }
 
 function changeScore() {
