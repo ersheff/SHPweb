@@ -3,7 +3,8 @@
 
 <head>
 	<meta charset="utf-8">
-    
+    <meta name="viewport" content="width=480">
+
     <link rel="stylesheet" href="wac-style.css">
     
     <script src="/socket.io/socket.io.js"></script>
@@ -19,27 +20,22 @@
 		<h1>SHP of THSEUS</h1>
 	</div>
 
-	<div>
-		<input type="range" class="slider" id="mainSlider" value="50" min="1" max="100" oninput="this.nextElementSibling.value = this.value; testFunction(); changeFreq(this.value);">
-		<output>50</output>
-	</div>
-	
-	<br>
-
-	<div>
-    	<button type="button" class="button" id="startButton" onclick="changeScore();">Click</button>
+	<div class="container">
+		<input type="range" class="slider content-desktop" id="mainSlider" value="0" min="-100" max="100" oninput="changeDrone(this.value)">
 	</div>
 
-	<br>
+	<div class="container">
+    	<button type="button" class="button" id="startButton" onclick="toServer()">Send # to performers</button>
+	</div>
 
-	<div>
+	<div class="score-container">
     	<img id="score" src="" />
 	</div>
 
 	<script type="text/javascript">
+		changeScore();
 		document.querySelector("button")?.addEventListener("click", async () => {
-    	await Tone.start();
-    	console.log("context started");
+    		await Tone.start();
 		});
 	</script>
 

@@ -1,26 +1,19 @@
-const vol = new Tone.Volume(-127).toDestination();
-const player = new Tone.Player("http://localhost:3000/vibes.mp3").connect(vol);
-//const osc = new Tone.Oscillator( { frequency: 220, type: "triangle" } ).connect(vol).start();
+const theD = 73.42;
+const theFreq = 100;
 
-player.autostart = true;
-player.loop = true;
+const vol = new Tone.Volume(-20).toDestination();
+const fb = new Tone.FeedbackDelay(.2, 0.6).connect(vol);
+const filter = new Tone.Filter(theFreq, "lowpass").connect(fb);
+const drone1 = new Tone.Oscillator( { frequency: theD, type: "sawtooth" } ).connect(filter).start();
+const drone2 = new Tone.Oscillator( { frequency: theD, type: "sawtooth" } ).connect(filter).start();
+const drone3 = new Tone.Oscillator( { frequency: theD, type: "sawtooth" } ).connect(filter).start();
+const drone4 = new Tone.Oscillator( { frequency: theD, type: "sawtooth" } ).connect(filter).start();
 
-function loopVol(data) {
-    let scaleVol = data-127;
-    vol.volume.value = scaleVol;
+function changeDrone(data) {
+    let filterFreq = (Math.abs(data)*10) + 30;
+    let freqScale = data*.025;
+    filter.frequency.value = filterFreq;
+    drone2.frequency.value = theD+freqScale;
+    drone3.frequency.value = theD+(freqScale*1.5);
+    drone4.frequency.value = theD+(freqScale*2);
 }
-
-function loopSpeed(data){
-    let scaleSpeed = data*.0157;
-    player.playbackRate = scaleSpeed;
-}
-
-
-/*
-$(function () {
-    $('#volSlider').on('input', function() {
-        volSetting = $('#volSlider').val();
-        volume.volume.value = volSetting;
-        return false;
-    });
-});*/

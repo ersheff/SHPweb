@@ -8,23 +8,33 @@ document.addEventListener('DOMContentLoaded', (event) => {
   socket.on("serverMessage", (incoming) => {
     console.log(incoming.message);
   });
-  socket.on("control", (incoming) => {
-    let val = incoming.values[0];
-    document.getElementById("fromMax").value = val;
-    loopSpeed(val);
+
+  socket.on("event", (incoming) => {
+    let event = incoming.header;
+    if (event == "audienceScore") {
+      changeScore();
+    }
+    if (event == "audienceEnd") {
+      document.getElementById("score").src = "SHPscore/SHP11.png";
+    }
   });
 
 });
 
-
-function toMax(data) {
+function toServer() {
+  let value =   document.getElementById("mainSlider").value;
   let outgoing = {
     header: "fromWeb",
-    values: data,
+    values: value,
     mode: "push",
     target: "all"
   };
   socket.emit("control", outgoing);
+}
+
+function changeScore() {
+  let scoreNum = Math.floor(Math.random() * 10) + 1;
+  document.getElementById("score").src = "SHPscore/SHP" + scoreNum + ".png";
 }
 
 
